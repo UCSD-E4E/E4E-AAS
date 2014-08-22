@@ -9,7 +9,7 @@
 // Includes
 
 // Defines
-#define SPEED_UPDATE_PERIOD	1000
+#define SPEED_UPDATE_PERIOD	5000
 #define DIRECTION_UPDATE_PERIOD 1000
 #define UI_UPDATE_PERIOD 1000
 
@@ -20,7 +20,7 @@ uint32_t time, updateSpeed, updateDirection, updateUI;
 String direction = "ERROR IN ADC!\n";
 float speed;
 uint16_t dirOffset = 0;
-float anemometerFixFactor = 1;
+float anemometerFixFactor = 0.099;
 
 const uint8_t DIR_LUT[16] = {14, 26, 39, 49, 67, 84, 92, 125, 140, 171, 183, 199, 216, 226, 229, 234};
 const uint8_t DIR_OFF_LUT[16] = {12, 14, 13, 0, 15, 10, 11, 2, 1, 8, 9, 6, 7, 4, 3, 5};
@@ -54,7 +54,10 @@ void loop(void){
 		updateDirection += DIRECTION_UPDATE_PERIOD;
 	}
 	if(time >= updateSpeed){
+		Serial.print("Revs: ");
+		Serial.println(numRevs);
 		speed = 4793.333/ SPEED_UPDATE_PERIOD * numRevs * anemometerFixFactor;
+		numRevs = 0;
 		updateSpeed += SPEED_UPDATE_PERIOD;
 	}
 	if(time >= updateUI){
