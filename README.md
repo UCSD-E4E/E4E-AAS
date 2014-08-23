@@ -1,3 +1,13 @@
 # E4E-AAS
 
-E4E Automated Antenna Station
+## Overview
+The Automated Antenna Station (AAS) is a system designed to assist in flight deployments for Engineers 4 Exploration (E4E) projects.  The AAS is intended to facilitate the usage of highly directional antennae to establish autopilot and payload datalinks to enable long-range command, control, and communications of the Unmanned Aerial System (UAS).  As the AAS will form the core of the flight operations center as the primary communications hub for the autopilot operator, it can also act as a flight operations center, providing not only autopilot C3, but also flight enviroment information such as meteorological data.  As such, a weather station has been incorporated into the design to provide the flight operations team with the information they need to successfully conduct the mission.
+
+## Hardware
+### Antenna Tracker
+The primary mission of the AAS is to provide the autopilot operator with a platform capable of accurately aiming a directional antenna to allow for long range radio communications.
+### Weather Station
+The secondary mission of the AAS is to support the flight operations team in planning and monitoring the mission.  In order to plan a successful mission, the flight operations team has to not only authorize a flight by analyzing mission go/no go criteria, but also plan the mission to permit the most battery-efficient flight path, i.e. not flying with a significant crosswind in mapping missions.  The weather station provides a variety of meteorological measurements to permit the flight operations team to analyze the mission go/no go criteria, which include average wind speed, gusting, wind direction, temperature, and visibility.  By providing a concise and accurate measurement of all of these variables, in addition to other measurements critical for weather forecasting, the AAS weather station provides the flight operations team with an objective metric for mission safety.
+
+### Vehicular Mount
+The AAS is designed to mount onto a single tripod to permit unattended operation in windy environments.  Because many deployments occur in austere environments, with the potential to need to move the flight operations center frequently, ease of mobility is essential to the usefulness of this system.  This tripod is capable of being mounted onto a 4x4 truck bed, to facilitate quick transport and setup at the flight operations base.  Being able to do this allows the flight operations team to operate nearly all of the autopilot and flight planning software from within the vehicle, providing a comfortable and safe environment for the flight operations team.  Providing this capability also permits the team to quickly and professionally deploy a mission in a minimal amount of time by reducing the amount of setup required onsite.
