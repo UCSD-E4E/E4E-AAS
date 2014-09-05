@@ -9,7 +9,7 @@
 // Includes
 
 // Defines
-#define SPEED_UPDATE_PERIOD	5000
+#define SPEED_UPDATE_PERIOD	1000
 #define DIRECTION_UPDATE_PERIOD 1000
 #define UI_UPDATE_PERIOD 1000
 
@@ -17,14 +17,14 @@
 volatile uint16_t numRevs = 0;
 uint8_t windOffset = 0;
 uint32_t time, updateSpeed, updateDirection, updateUI;
-String direction = "ERROR IN ADC!\n";
+String direction = "ERROR IN ADC!";
 float speed;
 uint16_t dirOffset = 0;
 float anemometerFixFactor = 0.099;
 
-const uint8_t DIR_LUT[16] = {14, 26, 39, 49, 67, 84, 92, 125, 140, 171, 183, 199, 216, 226, 229, 234};
+const uint16_t DIR_LUT[16] = {79, 138, 198, 240, 324, 397, 428, 567, 623, 744, 787, 847, 906, 940, 949, 967};
 const uint8_t DIR_OFF_LUT[16] = {12, 14, 13, 0, 15, 10, 11, 2, 1, 8, 9, 6, 7, 4, 3, 5};
-const char* CARD_LUT[16] = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
+const String CARD_LUT[16] = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
 
 void setup(void){
     Serial.begin(57600);
@@ -54,8 +54,6 @@ void loop(void){
 		updateDirection += DIRECTION_UPDATE_PERIOD;
 	}
 	if(time >= updateSpeed){
-		Serial.print("Revs: ");
-		Serial.println(numRevs);
 		speed = 4793.333/ SPEED_UPDATE_PERIOD * numRevs * anemometerFixFactor;
 		numRevs = 0;
 		updateSpeed += SPEED_UPDATE_PERIOD;
