@@ -50,7 +50,7 @@ void loop(void){
 	if(time >= updateDirection){
 		for(int i = 0; i < 16; i++){
 			if(DIR_LUT[i] >= analogRead(A0)){
-				direction = CARD_LUT[DIR_OFF_LUT[(i + dirOffset / 22.5) % 16]];
+				direction = CARD_LUT[DIR_OFF_LUT[(i + (int)(dirOffset / 22.5)) % 16]];
 				break;
 			}
 		}
