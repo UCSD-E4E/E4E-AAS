@@ -19,10 +19,13 @@ uint8_t windOffset = 0;
 uint32_t time, updateSpeed, updateDirection, updateUI;
 String direction = "ERROR IN ADC!";
 float speed;
+// dirOffset is offset in degrees.
 uint16_t dirOffset = 0;
 float anemometerFixFactor = 0.099;
 
+// Implement all 16 directions anyways, because they can be triggered.  Likelihood is low, but better to have accuracy
 const uint16_t DIR_LUT[16] = {79, 138, 198, 240, 324, 397, 428, 567, 623, 744, 787, 847, 906, 940, 949, 967};
+// Mapping between DIR_LUT and cardinal directions for offset
 const uint8_t DIR_OFF_LUT[16] = {12, 14, 13, 0, 15, 10, 11, 2, 1, 8, 9, 6, 7, 4, 3, 5};
 const String CARD_LUT[16] = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
 
@@ -47,7 +50,7 @@ void loop(void){
 	if(time >= updateDirection){
 		for(int i = 0; i < 16; i++){
 			if(DIR_LUT[i] >= analogRead(A0)){
-				direction = CARD_LUT[DIR_OFF_LUT[(i + dirOffset) % 16]];
+				direction = CARD_LUT[DIR_OFF_LUT[(i + dirOffset / 22.5) % 16]];
 				break;
 			}
 		}
